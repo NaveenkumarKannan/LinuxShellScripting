@@ -1,0 +1,125 @@
+Linux Commands
+
+
+cat data.csv
+head -5 data.csv
+tail -5 data.csv
+less data.csv
+grep CAPTAIN data.csv
+grep -i captain data.csv
+grep -i -v captain data.csv or grep -iv captain data.csv
+grep -i -r captain .
+grep --help
+cat data.csv | grep CAP
+cat data.csv | grep -i cap
+cat data.csv | grep -iv cap
+find -name "*.pdf"
+find -size +5M
+find -size -5M
+find -type f
+find -type d
+find -empty
+find -type d -empty
+find -type f -empty
+find --help
+
+du -h *			h - human	du - disk users
+du -sh *		s - size
+du -sk *		k - kilo byte
+du -sm *		m - mega byte
+
+du -k * | sort -n
+du -k * | sort -rn
+
+Topic Variables
+userName = "Naveenkumar"
+echo "Hi $userName"
+
+env
+echo $PATH
+env | grep -i path
+echo $PATH
+env | grep -i userName
+env | grep -i userName1
+export userName
+env | grep -i USERNAME
+unset USERNAME
+
+sleep  2000
+ps
+ps -elf
+ctrl+c will stop the process upnormally
+ctrl+z will stop the process and send it to background
+jobs			-show background user process
+sleep 3000 &		&- running
+jobs
+
+fg %1			fg-foreground	%-jobid
+ctrl+z	
+
+kill %3			%-jobid
+kill 6579		pid-process id
+killall sleep		it won't work in windows 
+			it will only kill all processes that is running
+killall -9 sleep	it will kill all the precesses
+
+Topic - Data Manipulation in Unix
+echo "Java and Python"
+echo "Java and Python" | awk '{print $1}'
+echo "Java and Python" | awk '{print $3}'
+echo "Java and Python" | awk '{print $all}'
+echo "Java and Python" | awk '{print $0}'
+echo "Java and Python" | awk '{$3="C#"}{print $0}'
+
+cat data.csv | awk '{print $2 " " $3}'
+cat data.csv | awk '{print NR $2 " " $3}'
+cat data.csv | awk '{print $NF}'
+cat data.csv | awk '{print NF}'
+cat data.csv | awk '{print NR $2 " " $3 " " $NF}'
+
+echo "Naveen Kumar" | awk '{print length}'
+echo "Naveen Kumar" | awk '{print NR}'
+echo "Naveen Kumar" | awk '{print $1}'
+echo "Naveen Kumar" | awk '{print $2}'
+
+cat data.csv | awk '{if($3=="CAPTAIN") print $0}'
+cat data.csv | awk '{if($4>100000) print $0}'
+cat data.csv | awk '{if(NR==1) print $0}'
+cat data.csv | awk '{if(NR==2) print $0}'
+cat data.csv | awk '{if(NR>1&&NR<12) print $0}'
+cat data.csv | awk '{if(NR>3&&NR<8) print $0}'
+cat data.csv | awk 'NR==7, NR==10{print $0}'		- upper bound and lower bound
+
+
+cat data.csv | awk '{sum=sum+$4}{print sum}'
+cat data.csv | awk '{sum=sum+$4}{print NR " " $4 " " sum}'
+cat data.csv | awk '{sum=sum+$4} END {print sum}'
+cat data.csv | awk '{sum=sum+$4} END {print "sum = "sum}'
+cat data.csv | awk '{sum=sum+$4}{row=row+1} END {print "sum = "sum " row = "row}'
+cat data.csv | awk '{sum=sum+$4}{row=row+1} {average=sum/row} END {print "average = "average}'
+
+cat data.csv | awk '{sum=sum+$4} END {print "average = " sum/NR-1}'
+cat data.csv | awk '{if($3=="CAPTAIN") sum=sum+$4} END  {print "captain sum = " sum}'
+cat data.csv | grep -i captain | awk '{sum=sum+$4} END {print sum}'
+awk 'BEGIN {for(i=0;i<=5;i++) print i }'
+
+
+Shell Scripting
+echo "Enter you Name: "
+read userName
+echo "Welcome, $userName"
+
+touch first.sh
+nano first.sh
+bash first.sh
+./first.sh
+
+echo -e "Naveen \n Kumar"
+
+
+
+
+
+
+
+EOD
